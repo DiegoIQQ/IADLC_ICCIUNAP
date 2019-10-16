@@ -87,7 +87,9 @@ def stream_connect(auth):
   response = requests.get(stream_url, auth=auth, stream=True)
   for response_line in response.iter_lines():
     if response_line:
-      pprint(json.loads(response_line))
+        
+        pprint(json.loads(response_line)['data']['text'])
+        pprint(json.loads(response_line)['includes']['media'][0]['url'])
 
 bearer_token = BearerTokenAuth(consumer_key, consumer_secret)
 
